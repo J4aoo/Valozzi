@@ -71,8 +71,8 @@ export default function SobrePage() {
           title="Não vendemos apenas uma cota. Construímos estratégias."
         />
 
-        <section className="bg-valozzi-offwhite py-28 lg:py-36">
-          <div className="mx-auto max-w-2xl px-6 lg:px-12 text-center space-y-6 text-lg text-valozzi-black/70">
+        <section className="vars-light surface-light py-28 lg:py-40">
+          <div className="text-muted mx-auto max-w-2xl space-y-6 px-6 text-center text-[clamp(1.0625rem,1.8vw,1.3125rem)] leading-snug tracking-[-0.01em] lg:px-12">
             <Reveal>
               <p>
                 A Valozzi nasceu com uma visão simples: decisões patrimoniais
@@ -96,21 +96,21 @@ export default function SobrePage() {
              experiência, estrutura e empresas parceiras (material pendente). */}
         </section>
 
-        <section className="bg-valozzi-black text-valozzi-offwhite py-28 lg:py-36">
+        <section className="vars-dark surface-dark py-28 lg:py-40">
           <div className="mx-auto max-w-5xl px-6 lg:px-12">
             <Reveal>
-              <h2 className="font-serif text-3xl sm:text-4xl text-center tracking-[-0.015em] text-balance">
+              <h2 className="text-title text-center text-[clamp(2rem,4.5vw,3.25rem)] text-balance">
                 Para quem trabalhamos
               </h2>
             </Reveal>
-            <StaggerGroup className="mt-16 grid sm:grid-cols-2 gap-10">
+            <StaggerGroup className="mt-16 grid gap-4 sm:grid-cols-2">
               {PERSONAS.map((persona) => (
-                <StaggerItem key={persona.title}>
-                  <div className="h-full border border-valozzi-gold/20 p-8">
-                    <h3 className="font-serif text-xl text-valozzi-gold">
+                <StaggerItem key={persona.title} className="h-full">
+                  <div className="glass h-full rounded-[1.75rem] p-8">
+                    <h3 className="text-headline text-2xl text-valozzi-champagne">
                       {persona.title}
                     </h3>
-                    <p className="mt-4 text-sm text-valozzi-offwhite/70 leading-relaxed">
+                    <p className="text-muted mt-4 text-[16px] leading-relaxed">
                       {persona.description}
                     </p>
                   </div>
@@ -120,30 +120,30 @@ export default function SobrePage() {
           </div>
         </section>
 
-        <section className="bg-valozzi-champagne py-28 lg:py-36">
+        <section className="vars-light surface-champagne py-28 lg:py-40">
           <div className="mx-auto max-w-4xl px-6 lg:px-12">
             <Reveal>
-              <h2 className="font-serif text-3xl sm:text-4xl text-center tracking-[-0.015em] text-balance">
+              <h2 className="text-title text-center text-[clamp(2rem,4.5vw,3.25rem)] text-balance">
                 A Valozzi é para você se...
               </h2>
             </Reveal>
-            <div className="mt-14 grid sm:grid-cols-2 gap-10">
-              <StaggerGroup className="space-y-4" stagger={0.08}>
+            <div className="mt-14 grid gap-4 sm:grid-cols-2">
+              <StaggerGroup className="glass-thick list-inset overflow-hidden rounded-[1.75rem]" stagger={0.08}>
                 {PARA_VOCE.map((item) => (
                   <StaggerItem key={item}>
-                    <div className="flex items-start gap-3">
-                      <span className="text-valozzi-black/70">✓</span>
-                      <span>{item}</span>
+                    <div className="flex items-start gap-3.5 px-6 py-4">
+                      <span aria-hidden className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-valozzi-black text-[12px] text-valozzi-champagne">✓</span>
+                      <span className="text-[16px] font-medium">{item}</span>
                     </div>
                   </StaggerItem>
                 ))}
               </StaggerGroup>
-              <StaggerGroup className="space-y-4 text-valozzi-black/50" stagger={0.08}>
+              <StaggerGroup className="glass list-inset overflow-hidden rounded-[1.75rem] text-valozzi-black/55" stagger={0.08}>
                 {TALVEZ_NAO.map((item) => (
                   <StaggerItem key={item}>
-                    <div className="flex items-start gap-3">
-                      <span>×</span>
-                      <span>{item}</span>
+                    <div className="flex items-start gap-3.5 px-6 py-4">
+                      <span aria-hidden className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full shadow-[inset_0_0_0_1px_var(--line)] text-[13px]">×</span>
+                      <span className="text-[16px]">{item}</span>
                     </div>
                   </StaggerItem>
                 ))}
@@ -152,19 +152,19 @@ export default function SobrePage() {
           </div>
         </section>
 
-        <section className="bg-valozzi-offwhite py-28 lg:py-36">
+        <section className="vars-light surface-light py-28 lg:py-40">
           <div className="mx-auto max-w-5xl px-6 lg:px-12">
             <Reveal>
-              <h2 className="font-serif text-3xl sm:text-4xl text-center tracking-[-0.015em] text-balance">
+              <h2 className="text-title text-center text-[clamp(2rem,4.5vw,3.25rem)] text-balance">
                 Por que a Valozzi?
               </h2>
             </Reveal>
-            <StaggerGroup className="mt-16 grid sm:grid-cols-3 gap-10 max-w-3xl mx-auto">
+            <StaggerGroup className="mx-auto mt-16 grid max-w-4xl gap-4 sm:grid-cols-3">
               {PILARES.map((pilar) => (
-                <StaggerItem key={pilar.title}>
-                  <div className="text-center">
-                    <h3 className="font-serif text-lg">{pilar.title}</h3>
-                    <p className="mt-2 text-sm text-valozzi-black/60">
+                <StaggerItem key={pilar.title} className="h-full">
+                  <div className="glass h-full rounded-[1.75rem] p-7 text-center">
+                    <h3 className="text-headline text-xl">{pilar.title}</h3>
+                    <p className="text-muted mt-2 text-[15px] leading-relaxed">
                       {pilar.description}
                     </p>
                   </div>

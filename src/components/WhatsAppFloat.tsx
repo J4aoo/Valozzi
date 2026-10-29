@@ -1,37 +1,23 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { buildWhatsAppLink, DEFAULT_WHATSAPP_MESSAGE } from "@/lib/whatsapp";
 import { springs } from "@/lib/motion";
 
+// Botão flutuante em vidro escuro com o ícone dourado: presente sem gritar.
+// Sem pulso em loop — animação infinita no canto da tela distrai a leitura.
 export function WhatsAppFloat() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <motion.a
       href={buildWhatsAppLink(DEFAULT_WHATSAPP_MESSAGE)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"
-      className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-valozzi-gold text-valozzi-black shadow-lg shadow-black/30"
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{
-        scale: 1,
-        opacity: 1,
-        boxShadow: reduceMotion
-          ? undefined
-          : [
-              "0 0 0 0 rgba(165,155,117,0.35)",
-              "0 0 0 14px rgba(165,155,117,0)",
-              "0 0 0 0 rgba(165,155,117,0)",
-            ],
-      }}
-      transition={{
-        scale: { ...springs.momentum, delay: 0.6 },
-        opacity: { duration: 0.3, delay: 0.6 },
-        boxShadow: { duration: 2.8, repeat: Infinity, ease: "easeOut", delay: 1.5 },
-      }}
-      whileHover={{ scale: 1.08 }}
+      className="vars-dark glass-thick fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full text-valozzi-champagne"
+      initial={{ scale: 0.4, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ scale: { ...springs.momentum, delay: 0.6 }, opacity: { duration: 0.3, delay: 0.6 } }}
+      whileHover={{ scale: 1.06 }}
       whileTap={{ scale: 0.92 }}
     >
       <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7">

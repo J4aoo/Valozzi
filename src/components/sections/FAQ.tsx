@@ -43,21 +43,22 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   const panelId = useId();
 
   return (
-    <div className="py-6">
+    <div>
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         aria-expanded={open}
         aria-controls={panelId}
-        className="w-full flex cursor-pointer items-center justify-between gap-4 text-left font-serif text-lg"
+        className="flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left text-[17px] font-semibold tracking-[-0.01em] transition-colors hover:bg-[var(--g-hover)]"
       >
         {question}
         <motion.span
-          animate={{ rotate: open ? 45 : 0 }}
+          animate={{ rotate: open ? 90 : 0 }}
           transition={springs.snappy}
-          className="shrink-0 text-valozzi-gold text-2xl leading-none"
+          className="shrink-0 text-xl leading-none text-valozzi-gold"
+          aria-hidden
         >
-          +
+          ›
         </motion.span>
       </button>
       <AnimatePresence initial={false}>
@@ -70,7 +71,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             transition={springs.snappy}
             className="overflow-hidden"
           >
-            <p className="mt-4 text-sm text-valozzi-black/60 leading-relaxed">
+            <p className="text-muted px-6 pb-6 pr-10 text-[15px] leading-relaxed">
               {answer}
             </p>
           </motion.div>
@@ -82,16 +83,16 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 export function FAQ() {
   return (
-    <section className="bg-valozzi-offwhite py-28 lg:py-36">
+    <section className="vars-light surface-champagne py-28 lg:py-40">
       <div className="mx-auto max-w-3xl px-6 lg:px-12">
         <Reveal>
-          <h2 className="font-serif text-3xl sm:text-4xl text-center tracking-[-0.015em] text-balance">
+          <h2 className="text-title text-center text-[clamp(2rem,4.5vw,3.25rem)] text-balance">
             Perguntas frequentes
           </h2>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="mt-14 divide-y divide-valozzi-black/10">
+          <div className="glass-thick list-inset mt-14 overflow-hidden rounded-[1.75rem]">
             {FAQ_ITEMS.map((item) => (
               <FAQItem key={item.question} {...item} />
             ))}

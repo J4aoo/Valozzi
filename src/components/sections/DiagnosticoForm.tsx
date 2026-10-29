@@ -59,15 +59,26 @@ function OptionButton({
     <motion.button
       type="button"
       onClick={onSelect}
+      aria-pressed={selected}
       whileTap={{ scale: 0.97 }}
       transition={springs.press}
-      className={`text-left px-6 py-4 border text-sm transition-colors duration-200 ${
+      className={`flex items-center justify-between gap-3 rounded-2xl px-5 py-4 text-left text-[16px] transition-colors duration-200 ${
         selected
-          ? "border-valozzi-gold bg-valozzi-gold/10 text-valozzi-offwhite"
-          : "border-valozzi-gold/20 text-valozzi-offwhite/70 hover:border-valozzi-gold/60"
+          ? "bg-valozzi-gold/20 text-valozzi-offwhite shadow-[inset_0_0_0_1.5px_var(--color-valozzi-gold)]"
+          : "bg-white/[0.04] text-valozzi-offwhite/80 shadow-[inset_0_0_0_1px_var(--line)] hover:bg-white/[0.07]"
       }`}
     >
       {option}
+      <span
+        aria-hidden
+        className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] transition-all duration-200 ${
+          selected
+            ? "scale-100 bg-gradient-to-b from-valozzi-champagne to-valozzi-gold text-valozzi-black"
+            : "scale-90 shadow-[inset_0_0_0_1px_var(--line)] text-transparent"
+        }`}
+      >
+        ✓
+      </span>
     </motion.button>
   );
 }
@@ -149,8 +160,8 @@ export function DiagnosticoForm() {
   ];
 
   return (
-    <section id="diagnostico" className="bg-valozzi-black text-valozzi-offwhite py-28 lg:py-36">
-      <div className="mx-auto max-w-2xl px-6 lg:px-12">
+    <section id="diagnostico" className="vars-dark surface-dark scroll-mt-24 py-28 lg:py-40">
+      <div className="glass-thick mx-auto max-w-2xl rounded-[2rem] px-6 py-10 sm:px-10 sm:py-12">
         <AnimatePresence mode="wait">
           {!submitted ? (
             <motion.div
@@ -164,12 +175,12 @@ export function DiagnosticoForm() {
                 <Eyebrow>Diagnóstico Patrimonial Valozzi</Eyebrow>
               </Reveal>
               <Reveal delay={0.05}>
-                <h2 className="mt-4 font-serif text-3xl sm:text-4xl leading-tight tracking-[-0.015em] text-balance">
+                <h2 className="text-title mt-3 text-[clamp(1.875rem,4vw,2.75rem)] text-balance">
                   Qual estratégia faz sentido para o seu momento?
                 </h2>
               </Reveal>
               <Reveal delay={0.1}>
-                <p className="mt-4 text-valozzi-offwhite/70">
+                <p className="text-muted mt-4 text-[17px] leading-relaxed">
                   Responda algumas perguntas. Em poucos minutos, você poderá
                   iniciar uma conversa personalizada com um especialista.
                 </p>
@@ -177,9 +188,9 @@ export function DiagnosticoForm() {
 
               <div className="mt-8 flex gap-2">
                 {Array.from({ length: TOTAL_STEPS }).map((_, i) => (
-                  <span key={i} className="h-1 flex-1 bg-valozzi-gold/15 overflow-hidden">
+                  <span key={i} className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/[0.08]">
                     <motion.span
-                      className="block h-full bg-valozzi-gold origin-left"
+                      className="block h-full origin-left rounded-full bg-gradient-to-r from-valozzi-gold to-valozzi-champagne"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: i <= step ? 1 : 0 }}
                       transition={springs.snappy}
@@ -199,7 +210,7 @@ export function DiagnosticoForm() {
                       exit="exit"
                       transition={springs.snappy}
                     >
-                      <p className="mb-4 text-sm text-valozzi-gold">Qual é seu principal objetivo?</p>
+                      <p className="text-headline mb-5 text-xl">Qual é seu principal objetivo?</p>
                       <OptionList
                         options={OBJETIVO_OPTIONS}
                         selected={answers.objetivo}
@@ -220,7 +231,7 @@ export function DiagnosticoForm() {
                       exit="exit"
                       transition={springs.snappy}
                     >
-                      <p className="mb-4 text-sm text-valozzi-gold">
+                      <p className="text-headline mb-5 text-xl">
                         Qual é seu horizonte de planejamento?
                       </p>
                       <OptionList
@@ -243,7 +254,7 @@ export function DiagnosticoForm() {
                       exit="exit"
                       transition={springs.snappy}
                     >
-                      <p className="mb-4 text-sm text-valozzi-gold">
+                      <p className="text-headline mb-5 text-xl">
                         Qual faixa de parcela mensal você considera confortável?
                       </p>
                       <OptionList
@@ -266,7 +277,7 @@ export function DiagnosticoForm() {
                       exit="exit"
                       transition={springs.snappy}
                     >
-                      <p className="mb-4 text-sm text-valozzi-gold">
+                      <p className="text-headline mb-5 text-xl">
                         Você já possui patrimônio? (selecione uma ou mais opções)
                       </p>
                       <div className="grid sm:grid-cols-2 gap-3">
@@ -285,7 +296,7 @@ export function DiagnosticoForm() {
                         disabled={!canAdvance[3]}
                         whileTap={canAdvance[3] ? { scale: 0.97 } : undefined}
                         transition={springs.press}
-                        className="mt-8 inline-flex items-center justify-center px-8 py-4 text-xs font-medium tracking-[0.2em] uppercase bg-valozzi-gold text-valozzi-black disabled:opacity-30 disabled:cursor-not-allowed hover:bg-valozzi-champagne transition-colors"
+                        className="btn btn-gold mt-8"
                       >
                         Continuar
                       </motion.button>
@@ -301,7 +312,7 @@ export function DiagnosticoForm() {
                       exit="exit"
                       transition={springs.snappy}
                     >
-                      <p className="mb-4 text-sm text-valozzi-gold">Últimos dados</p>
+                      <p className="text-headline mb-5 text-xl">Últimos dados</p>
                       <div className="space-y-4">
                         <input
                           required
@@ -311,7 +322,7 @@ export function DiagnosticoForm() {
                           onChange={(e) =>
                             setAnswers((prev) => ({ ...prev, nome: e.target.value }))
                           }
-                          className="w-full bg-transparent border border-valozzi-gold/30 px-6 py-4 text-sm placeholder:text-valozzi-offwhite/40 focus:border-valozzi-gold outline-none transition-colors"
+                          className="field"
                         />
                         <input
                           required
@@ -321,7 +332,7 @@ export function DiagnosticoForm() {
                           onChange={(e) =>
                             setAnswers((prev) => ({ ...prev, whatsapp: e.target.value }))
                           }
-                          className="w-full bg-transparent border border-valozzi-gold/30 px-6 py-4 text-sm placeholder:text-valozzi-offwhite/40 focus:border-valozzi-gold outline-none transition-colors"
+                          className="field"
                         />
                       </div>
 
@@ -329,7 +340,7 @@ export function DiagnosticoForm() {
                         type="submit"
                         whileTap={{ scale: 0.97 }}
                         transition={springs.press}
-                        className="mt-8 w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-xs font-medium tracking-[0.2em] uppercase bg-valozzi-gold text-valozzi-black hover:bg-valozzi-champagne transition-colors"
+                        className="btn btn-gold mt-8 w-full sm:w-auto"
                       >
                         Receber orientação
                       </motion.button>
@@ -341,9 +352,9 @@ export function DiagnosticoForm() {
                   <button
                     type="button"
                     onClick={back}
-                    className="mt-6 block text-xs tracking-widest uppercase text-valozzi-offwhite/40 hover:text-valozzi-gold transition-colors"
+                    className="mt-6 inline-flex items-center gap-1 text-[15px] text-valozzi-gold transition-opacity hover:opacity-80"
                   >
-                    Voltar
+                    <span aria-hidden>‹</span> Voltar
                   </button>
                 )}
               </form>
@@ -356,10 +367,19 @@ export function DiagnosticoForm() {
               transition={springs.default}
               className="text-center"
             >
-              <h2 className="font-serif text-3xl sm:text-4xl leading-tight tracking-[-0.015em] text-balance">
+              <motion.span
+                aria-hidden
+                initial={{ scale: 0.4, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ ...springs.momentum, delay: 0.1 }}
+                className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-b from-valozzi-champagne to-valozzi-gold text-2xl text-valozzi-black shadow-[0_12px_36px_-10px_rgba(165,155,117,0.8)]"
+              >
+                ✓
+              </motion.span>
+              <h2 className="text-title text-[clamp(1.875rem,4vw,2.75rem)] text-balance">
                 Seu próximo passo começa agora.
               </h2>
-              <p className="mt-6 text-valozzi-offwhite/70">
+              <p className="text-muted mt-6 text-[17px]">
                 Envie suas informações e fale diretamente com um especialista
                 Valozzi.
               </p>

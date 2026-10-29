@@ -1,9 +1,8 @@
 "use client";
 
-import { motion } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
-import { springs } from "@/lib/motion";
+import { spotlight } from "@/lib/spotlight";
 
 const CARDS = [
   {
@@ -34,35 +33,36 @@ const CARDS = [
 
 export function OndeQuerChegar() {
   return (
-    <section id="patrimonio" className="bg-valozzi-black text-valozzi-offwhite py-28 lg:py-36">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+    <section id="patrimonio" className="vars-dark surface-dark scroll-mt-24 py-28 lg:py-40">
+      <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Reveal>
-          <h2 className="font-serif text-3xl sm:text-4xl text-center tracking-[-0.015em] text-balance">
+          <h2 className="text-title mx-auto max-w-3xl text-center text-[clamp(2rem,4.5vw,3.25rem)] text-balance">
             Qual é o próximo movimento do seu patrimônio?
           </h2>
         </Reveal>
 
-        <StaggerGroup className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StaggerGroup className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {CARDS.map((card) => (
-            <StaggerItem key={card.number}>
-              <motion.a
+            <StaggerItem key={card.number} className="h-full">
+              <a
                 href="#diagnostico"
-                whileHover={{ y: -6, borderColor: "var(--color-valozzi-gold)" }}
-                whileTap={{ scale: 0.98 }}
-                transition={springs.momentum}
-                className="group h-full border border-valozzi-gold/20 p-8 flex flex-col justify-between"
+                onPointerMove={spotlight}
+                className="glass glass-spotlight group flex h-full flex-col justify-between rounded-[1.75rem] p-7 transition-transform duration-300 ease-out hover:-translate-y-1 active:scale-[0.98]"
               >
                 <div>
-                  <p className="text-sm text-valozzi-gold">{card.number}</p>
-                  <h3 className="mt-4 font-serif text-xl">{card.title}</h3>
-                  <p className="mt-3 text-sm text-valozzi-offwhite/60">
-                    {card.description}
-                  </p>
+                  <span className="inline-flex h-8 items-center rounded-full bg-valozzi-gold/15 px-3 text-[13px] font-semibold tabular-nums text-valozzi-champagne">
+                    {card.number}
+                  </span>
+                  <h3 className="text-headline mt-6 text-[1.375rem]">{card.title}</h3>
+                  <p className="text-muted mt-3 text-[15px] leading-relaxed">{card.description}</p>
                 </div>
-                <p className="mt-8 text-xs tracking-[0.2em] uppercase text-valozzi-gold group-hover:underline">
+                <p className="mt-8 inline-flex items-center gap-1 text-[15px] font-medium text-valozzi-gold">
                   Explorar
+                  <span className="transition-transform group-hover:translate-x-0.5" aria-hidden>
+                    ›
+                  </span>
                 </p>
-              </motion.a>
+              </a>
             </StaggerItem>
           ))}
         </StaggerGroup>

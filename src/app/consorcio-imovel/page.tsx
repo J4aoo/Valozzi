@@ -53,30 +53,32 @@ export default function ConsorcioImovelPage() {
           </div>
         </PageHero>
 
-        <section className="bg-valozzi-offwhite py-28 lg:py-36">
+        <section className="vars-light surface-light py-28 lg:py-40">
           <div className="mx-auto max-w-6xl px-6 lg:px-12">
             <Reveal>
-              <h2 className="font-serif text-3xl sm:text-4xl text-center tracking-[-0.015em] text-balance">
+              <h2 className="text-title text-center text-[clamp(2rem,4.5vw,3.25rem)] text-balance">
                 O que analisamos antes de falar em carta
               </h2>
             </Reveal>
-            <StaggerGroup className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <StaggerGroup className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {CONSIDERACOES.map((item) => (
-                <StaggerItem key={item.title}>
-                  <h3 className="font-serif text-lg">{item.title}</h3>
-                  <p className="mt-3 text-sm text-valozzi-black/60">
-                    {item.description}
-                  </p>
+                <StaggerItem key={item.title} className="h-full">
+                  <div className="glass h-full rounded-[1.75rem] p-7">
+                    <h3 className="text-headline text-xl">{item.title}</h3>
+                    <p className="text-muted mt-3 text-[15px] leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
                 </StaggerItem>
               ))}
             </StaggerGroup>
           </div>
         </section>
 
-        <section className="bg-valozzi-champagne py-24 lg:py-32">
+        <section className="vars-light surface-champagne py-24 lg:py-32">
           <div className="mx-auto max-w-2xl px-6 lg:px-12 text-center">
             <Reveal>
-              <p className="font-serif text-2xl italic leading-relaxed">
+              <p className="glass rounded-[1.75rem] px-8 py-10 font-serif text-[clamp(1.375rem,3vw,1.875rem)] italic leading-relaxed">
                 Não começamos perguntando qual imóvel você quer.
                 <br />
                 Começamos entendendo por que você quer esse imóvel.
@@ -85,8 +87,8 @@ export default function ConsorcioImovelPage() {
           </div>
         </section>
 
-        <section className="bg-valozzi-black py-10">
-          <p className="mx-auto max-w-2xl px-6 lg:px-12 text-center text-xs text-valozzi-offwhite/40">
+        <section className="vars-dark surface-dark py-10">
+          <p className="mx-auto max-w-2xl px-6 lg:px-12 text-center text-[12px] leading-relaxed text-subtle">
             O consórcio é uma modalidade de autofinanciamento (Lei nº
             11.795/2008). A contemplação depende de sorteio ou lance,
             conforme as regras do grupo — não há data ou rentabilidade

@@ -26,8 +26,8 @@ export default function ConsorcioVeiculoPage() {
           </div>
         </PageHero>
 
-        <section className="bg-valozzi-black py-10">
-          <p className="mx-auto max-w-2xl px-6 lg:px-12 text-center text-xs text-valozzi-offwhite/40">
+        <section className="vars-dark surface-dark py-10">
+          <p className="mx-auto max-w-2xl px-6 lg:px-12 text-center text-[12px] leading-relaxed text-subtle">
             O consórcio é uma modalidade de autofinanciamento (Lei nº
             11.795/2008). Não há garantia de contemplação, rentabilidade ou
             retorno em prazo determinado.

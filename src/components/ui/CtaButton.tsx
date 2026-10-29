@@ -1,72 +1,85 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
 import { ButtonHTMLAttributes, ReactNode } from "react";
-import { springs } from "@/lib/motion";
 
-const base =
-  "inline-flex items-center justify-center gap-2 px-8 py-4 text-xs font-medium tracking-[0.2em] uppercase transition-colors duration-300";
-
+// Cápsulas no estilo Apple. "solid" é o dourado da marca; "outline" virou
+// vidro — o mesmo papel secundário, agora como material translúcido.
+// O feedback de toque (scale no :active) fica no CSS de .btn, instantâneo.
 const variants = {
-  solid: "bg-valozzi-gold text-valozzi-black hover:bg-valozzi-champagne",
-  outline:
-    "border border-valozzi-gold hover:bg-valozzi-gold hover:text-valozzi-black",
+  solid: "btn btn-gold",
+  outline: "btn glass",
 };
 
-const MotionLink = motion.create(Link);
+const sizes = {
+  md: "",
+  sm: "btn-sm",
+};
+
+function Chevron() {
+  return (
+    <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden>
+      <path d="M4.5 2.5 8 6l-3.5 3.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 export function CtaLink({
   href,
   children,
   variant = "solid",
+  size = "md",
   className = "",
 }: {
   href: string;
   children: ReactNode;
   variant?: keyof typeof variants;
+  size?: keyof typeof sizes;
   className?: string;
 }) {
   const isExternal = href.startsWith("http");
   return (
-    <MotionLink
+    <Link
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
-      className={`${base} ${variants[variant]} ${className}`}
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.96, y: 0 }}
-      transition={springs.press}
+      className={`${variants[variant]} ${sizes[size]} ${className}`}
     >
       {children}
-    </MotionLink>
+    </Link>
   );
 }
 
-type NativeButtonProps = Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  "onAnimationStart" | "onAnimationEnd" | "onDrag" | "onDragStart" | "onDragEnd"
->;
+// Link de texto com chevron, o "Saiba mais ›" das páginas da Apple.
+export function TextLink({ href, children, className = "" }: { href: string; children: ReactNode; className?: string }) {
+  return (
+    <Link
+      href={href}
+      className={`group inline-flex items-center gap-1 text-[17px] text-valozzi-gold transition-opacity hover:opacity-80 ${className}`}
+    >
+      {children}
+      <span className="transition-transform group-hover:translate-x-0.5">
+        <Chevron />
+      </span>
+    </Link>
+  );
+}
 
 export function CtaButton({
   children,
   variant = "solid",
+  size = "md",
   className = "",
   ...props
 }: {
   children: ReactNode;
   variant?: keyof typeof variants;
+  size?: keyof typeof sizes;
   className?: string;
-} & NativeButtonProps) {
+} & ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <motion.button
-      className={`${base} ${variants[variant]} ${className}`}
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.96, y: 0 }}
-      transition={springs.press}
-      {...props}
-    >
+    <button className={`${variants[variant]} ${sizes[size]} ${className}`} {...props}>
       {children}
-    </motion.button>
+    </button>
   );
 }

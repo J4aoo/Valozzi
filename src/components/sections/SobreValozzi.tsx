@@ -2,30 +2,30 @@ import { Reveal } from "@/components/motion/Reveal";
 
 export function SobreValozzi() {
   return (
-    <section id="sobre" className="bg-valozzi-black text-valozzi-offwhite py-28 lg:py-36">
-      <div className="mx-auto max-w-3xl px-6 lg:px-12 text-center">
+    <section id="sobre" className="vars-dark surface-dark scroll-mt-24 py-28 lg:py-40">
+      <div className="mx-auto max-w-4xl px-6 text-center lg:px-12">
         <Reveal>
-          <h2 className="font-serif text-3xl sm:text-4xl leading-tight tracking-[-0.015em] text-balance">
+          <h2 className="text-display text-[clamp(2.25rem,5.5vw,4rem)] text-balance">
             Não vendemos apenas uma cota.
             <br />
-            Construímos estratégias.
+            <span className="text-gold">Construímos estratégias.</span>
           </h2>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="mt-8 text-valozzi-offwhite/70 text-lg">
+          <p className="text-muted mx-auto mt-8 max-w-2xl text-[clamp(1.0625rem,1.8vw,1.3125rem)] leading-snug tracking-[-0.01em]">
             A Valozzi nasceu com uma visão simples: decisões patrimoniais
             precisam ser tomadas com estratégia.
           </p>
         </Reveal>
         <Reveal delay={0.15}>
-          <p className="mt-4 text-valozzi-offwhite/70 text-lg">
+          <p className="text-muted mx-auto mt-4 max-w-2xl text-[clamp(1.0625rem,1.8vw,1.3125rem)] leading-snug tracking-[-0.01em]">
             Somos especializados em consórcio e trabalhamos para conectar
             objetivos financeiros a estratégias de aquisição patrimonial.
           </p>
         </Reveal>
         <Reveal delay={0.2}>
-          <p className="mt-4 text-valozzi-offwhite/70 text-lg">
+          <p className="text-muted mx-auto mt-4 max-w-2xl text-[clamp(1.0625rem,1.8vw,1.3125rem)] leading-snug tracking-[-0.01em]">
             Nosso trabalho começa entendendo o cliente — não oferecendo um
             produto.
           </p>

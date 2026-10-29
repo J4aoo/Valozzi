@@ -13,60 +13,58 @@ const LINKS = [
 
 export function Footer() {
   return (
-    <footer className="bg-valozzi-black text-valozzi-offwhite/70 border-t border-valozzi-gold/20">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12 py-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-        <div>
-          <Logo />
-          <p className="mt-3 text-sm">Investimentos</p>
-        </div>
+    <footer className="vars-dark surface-dark border-t border-valozzi-gold/15">
+      <div className="mx-auto max-w-6xl px-6 py-14 text-[13px] lg:px-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <Logo />
+            <p className="text-muted mt-3">Investimentos</p>
+          </div>
 
-        <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-valozzi-gold mb-4">
-            Navegação
-          </p>
-          <ul className="space-y-2 text-sm">
-            {LINKS.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="hover:text-valozzi-gold transition-colors">
-                  {link.label}
-                </Link>
+          <div>
+            <p className="mb-3 font-semibold text-valozzi-offwhite">Navegação</p>
+            <ul className="space-y-2.5">
+              {LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-muted transition-colors hover:text-valozzi-offwhite">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="mb-3 font-semibold text-valozzi-offwhite">Canais</p>
+            <ul className="space-y-2.5">
+              <li>
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted transition-colors hover:text-valozzi-offwhite"
+                >
+                  WhatsApp
+                </a>
               </li>
-            ))}
-          </ul>
-        </div>
+              <li>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted transition-colors hover:text-valozzi-offwhite"
+                >
+                  Instagram
+                </a>
+              </li>
+            </ul>
+          </div>
 
-        <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-valozzi-gold mb-4">
-            Canais
-          </p>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-valozzi-gold transition-colors"
-              >
-                WhatsApp
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-valozzi-gold transition-colors"
-              >
-                Instagram
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div className="text-sm text-valozzi-offwhite/50">
-          {/* TODO: incluir CNPJ, registro na administradora de consórcio,
-             endereço e canal de ouvidoria antes de publicar. */}
-          <p>© {new Date().getFullYear()} Valozzi. Todos os direitos reservados.</p>
+          <div className="text-subtle">
+            {/* TODO: incluir CNPJ, registro na administradora de consórcio,
+               endereço e canal de ouvidoria antes de publicar. */}
+            <p>© {new Date().getFullYear()} Valozzi. Todos os direitos reservados.</p>
+          </div>
         </div>
       </div>
     </footer>

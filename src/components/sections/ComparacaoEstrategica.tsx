@@ -11,31 +11,35 @@ const ROWS = [
 
 export function ComparacaoEstrategica() {
   return (
-    <section className="bg-valozzi-offwhite py-28 lg:py-36">
+    <section className="vars-light surface-light py-28 lg:py-40">
       <div className="mx-auto max-w-3xl px-6 lg:px-12">
         <Reveal>
-          <h2 className="font-serif text-3xl sm:text-4xl text-center tracking-[-0.015em] text-balance">
+          <h2 className="text-title text-center text-[clamp(2rem,4.5vw,3.25rem)] text-balance">
             Qual caminho faz sentido para o seu objetivo?
           </h2>
         </Reveal>
 
-        <StaggerGroup className="mt-14 border border-valozzi-black/10" stagger={0.06}>
-          {ROWS.map((row, i) => (
-            <StaggerItem key={row.objetivo}>
-              <div
-                className={`grid sm:grid-cols-2 gap-2 sm:gap-6 px-6 py-5 ${
-                  i !== ROWS.length - 1 ? "border-b border-valozzi-black/10" : ""
-                }`}
-              >
-                <p className="font-medium">{row.objetivo}</p>
-                <p className="text-valozzi-black/60">{row.possibilidade}</p>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+        <Reveal delay={0.05}>
+          <div className="glass-thick mt-14 overflow-hidden rounded-[1.75rem]">
+            <div className="text-subtle hidden grid-cols-2 gap-6 px-6 pb-2 pt-5 text-[13px] font-semibold sm:grid">
+              <span>Objetivo</span>
+              <span>Possibilidade</span>
+            </div>
+            <StaggerGroup className="list-inset" stagger={0.06}>
+              {ROWS.map((row) => (
+                <StaggerItem key={row.objetivo}>
+                  <div className="grid gap-1 px-6 py-4.5 sm:grid-cols-2 sm:gap-6">
+                    <p className="font-semibold tracking-[-0.01em]">{row.objetivo}</p>
+                    <p className="text-muted">{row.possibilidade}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerGroup>
+          </div>
+        </Reveal>
 
         <Reveal delay={0.1}>
-          <p className="mt-8 text-sm text-valozzi-black/50 text-center max-w-xl mx-auto">
+          <p className="text-muted mx-auto mt-8 max-w-xl text-center text-[15px]">
             Não existe modalidade universalmente melhor — depende do perfil,
             prazo, custo e objetivo. Por isso a Valozzi começa pela análise
             individual, não pela venda de um produto específico.

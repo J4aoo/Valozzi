@@ -32,10 +32,10 @@ export default function ContatoPage() {
 
         <DiagnosticoForm />
 
-        <section className="bg-valozzi-offwhite py-16">
+        <section className="vars-light surface-light py-16">
           {/* TODO: incluir CNPJ, registro na administradora de consórcio,
              endereço e canal oficial de ouvidoria antes de publicar. */}
-          <div className="mx-auto max-w-2xl px-6 lg:px-12 text-center text-sm text-valozzi-black/50 space-y-1">
+          <div className="mx-auto max-w-2xl px-6 lg:px-12 text-center text-[15px] text-muted space-y-1">
             <p>Valozzi Investimentos</p>
             <p>Atendimento via WhatsApp e Instagram.</p>
           </div>

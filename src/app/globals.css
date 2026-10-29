@@ -14,16 +14,312 @@
   --color-valozzi-champagne: #d7ccaa;
   --color-valozzi-offwhite: #f2efe6;
 
-  --font-sans: var(--font-inter);
+  /* SF Pro nos aparelhos Apple; Inter (bem próxima) no resto. A Playfair
+     fica reservada à logo e às frases de assinatura em itálico. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", var(--font-inter), system-ui, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-inter), system-ui,
+    sans-serif;
   --font-serif: var(--font-playfair);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(165, 155, 117, 0.35);
 }
 
 .text-balance {
   text-wrap: balance;
+}
+
+@layer components {
+/* ------------------------------------------------------------------
+   Superfícies. Cada seção declara em qual fundo está (escuro, claro ou
+   champanhe); isso define a cor de fundo, o brilho ambiente que o vidro
+   refrata e as variáveis que o .glass usa — então o mesmo card de vidro
+   se adapta sozinho a qualquer seção.
+   ------------------------------------------------------------------ */
+.vars-dark {
+  --g-bg: rgba(32, 30, 25, 0.42);
+  --g-bg-thick: rgba(22, 21, 17, 0.62);
+  --g-edge: rgba(242, 239, 230, 0.22);
+  --g-edge-soft: rgba(215, 204, 170, 0.05);
+  --g-rim: rgba(165, 155, 117, 0.16);
+  --g-shadow: 0 16px 48px -14px rgba(0, 0, 0, 0.75), 0 2px 6px -2px rgba(0, 0, 0, 0.45);
+  --g-hover: rgba(242, 239, 230, 0.06);
+  --muted: rgba(242, 239, 230, 0.64);
+  --subtle: rgba(242, 239, 230, 0.42);
+  --line: rgba(165, 155, 117, 0.2);
+  color: var(--color-valozzi-offwhite);
+}
+
+.vars-light {
+  --g-bg: rgba(255, 253, 247, 0.5);
+  --g-bg-thick: rgba(255, 253, 247, 0.7);
+  --g-edge: rgba(255, 255, 255, 0.95);
+  --g-edge-soft: rgba(255, 255, 255, 0.3);
+  --g-rim: rgba(13, 13, 11, 0.06);
+  --g-shadow: 0 12px 40px -14px rgba(13, 13, 11, 0.18), 0 2px 6px -2px rgba(13, 13, 11, 0.06);
+  --g-hover: rgba(13, 13, 11, 0.04);
+  --muted: rgba(13, 13, 11, 0.64);
+  --subtle: rgba(13, 13, 11, 0.45);
+  --line: rgba(13, 13, 11, 0.09);
+  color: var(--color-valozzi-black);
+}
+
+.surface-dark {
+  background-color: var(--color-valozzi-black);
+  background-image:
+    radial-gradient(55% 45% at 12% 0%, rgba(165, 155, 117, 0.2), transparent 70%),
+    radial-gradient(50% 50% at 92% 100%, rgba(215, 204, 170, 0.11), transparent 70%);
+}
+
+.surface-light {
+  background-color: var(--color-valozzi-offwhite);
+  background-image:
+    radial-gradient(50% 45% at 88% 8%, rgba(215, 204, 170, 0.7), transparent 70%),
+    radial-gradient(45% 45% at 8% 95%, rgba(165, 155, 117, 0.22), transparent 70%);
+}
+
+.surface-champagne {
+  background-color: var(--color-valozzi-champagne);
+  background-image:
+    radial-gradient(50% 50% at 15% 10%, rgba(242, 239, 230, 0.6), transparent 70%),
+    radial-gradient(45% 50% at 90% 90%, rgba(165, 155, 117, 0.45), transparent 70%);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+.text-subtle {
+  color: var(--subtle);
+}
+
+  /* Tipografia no estilo Apple: tracking negativo que cresce com o
+     tamanho, leading curto nos títulos, peso em vez de caixa-alta. */
+  .text-display {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+  .text-title {
+    font-family: var(--font-display);
+    font-weight: 650;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+  .text-headline {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+  }
+  .text-eyebrow {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--color-valozzi-gold);
+  }
+
+  /* Dourado escovado da paleta: champanhe → dourado → champanhe. */
+  .text-gold {
+    background-image: linear-gradient(
+      110deg,
+      var(--color-valozzi-gold) 0%,
+      var(--color-valozzi-champagne) 45%,
+      var(--color-valozzi-gold) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Em fundo claro o champanhe some; o mesmo dourado, escurecido com o
+     preto da paleta, mantém o contraste. */
+  .vars-light .text-gold {
+    background-image: linear-gradient(
+      110deg,
+      color-mix(in srgb, var(--color-valozzi-gold) 70%, var(--color-valozzi-black)) 0%,
+      var(--color-valozzi-gold) 50%,
+      color-mix(in srgb, var(--color-valozzi-gold) 70%, var(--color-valozzi-black)) 100%
+    );
+  }
+
+  /* ---------- Liquid glass ---------- */
+  .glass,
+  .glass-thick {
+    position: relative;
+    isolation: isolate;
+    background: var(--g-bg);
+    -webkit-backdrop-filter: blur(24px) saturate(170%);
+    backdrop-filter: blur(24px) saturate(170%);
+    box-shadow:
+      inset 0 1px 0 0 var(--g-edge),
+      inset 0 0 0 1px var(--g-rim),
+      var(--g-shadow);
+  }
+  .glass-thick {
+    background: var(--g-bg-thick);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    backdrop-filter: blur(40px) saturate(180%);
+  }
+  /* Aro especular: borda em gradiente que pega luz no canto superior
+     esquerdo e de novo no inferior direito, como vidro curvo. */
+  .glass::before,
+  .glass-thick::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      140deg,
+      var(--g-edge) 0%,
+      var(--g-edge-soft) 30%,
+      transparent 55%,
+      var(--g-edge-soft) 80%,
+      var(--g-edge) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  /* Brilho que segue o ponteiro (--mx/--my setados em JS). */
+  .glass-spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, -20%),
+      rgba(215, 204, 170, 0.18),
+      transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
+  }
+  .glass-spotlight:hover::after {
+    opacity: 1;
+  }
+
+  /* ---------- Botões (cápsula, sentence case) ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    height: 3rem;
+    padding: 0 1.75rem;
+    border-radius: 999px;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    transition:
+      transform 120ms ease-out,
+      filter 200ms ease,
+      background-color 200ms ease,
+      opacity 200ms ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:active:not(:disabled) {
+    transform: scale(0.96);
+    transition-duration: 60ms;
+  }
+  .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.35;
+  }
+  .btn-gold {
+    background: linear-gradient(to bottom, var(--color-valozzi-champagne), var(--color-valozzi-gold));
+    color: var(--color-valozzi-black);
+    font-weight: 600;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      0 10px 28px -12px rgba(165, 155, 117, 0.8);
+  }
+  .btn-gold:hover:not(:disabled) {
+    filter: brightness(1.06);
+  }
+  .btn-sm {
+    height: 2.5rem;
+    padding: 0 1.1rem;
+    font-size: 0.875rem;
+  }
+
+  /* ---------- Campos ---------- */
+  .field {
+    width: 100%;
+    border-radius: 1rem;
+    background: var(--g-bg);
+    box-shadow: inset 0 0 0 1px var(--line);
+    padding: 0.9rem 1.1rem;
+    font-size: 1.0625rem;
+    outline: none;
+    transition: box-shadow 160ms ease;
+  }
+  .field::placeholder {
+    color: var(--subtle);
+  }
+  .field:focus {
+    box-shadow:
+      inset 0 0 0 1px var(--color-valozzi-gold),
+      0 0 0 4px rgba(165, 155, 117, 0.22);
+  }
+
+  /* Hairline entre linhas de uma lista agrupada (estilo Ajustes do iOS). */
+  .list-inset > * + * {
+    box-shadow: inset 0 1px 0 var(--line);
+  }
+}
+
+/* Acessibilidade: menos transparência = vidro sólido; mais contraste =
+   bordas definidas; menos movimento = sem transições. */
+@media (prefers-reduced-transparency: reduce) {
+  .glass,
+  .glass-thick {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .vars-dark .glass,
+  .vars-dark .glass-thick {
+    background: #1a1915;
+  }
+  .vars-light .glass,
+  .vars-light .glass-thick {
+    background: #fffdf7;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .glass,
+  .glass-thick {
+    box-shadow: inset 0 0 0 1px currentColor;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

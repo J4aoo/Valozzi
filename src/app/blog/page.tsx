@@ -62,19 +62,19 @@ export default function BlogPage() {
           title="Antes de tomar uma decisão, entenda a estratégia."
         />
 
-        <section className="bg-valozzi-offwhite py-24 lg:py-32">
+        <section className="vars-light surface-light py-24 lg:py-32">
           <div className="mx-auto max-w-6xl px-6 lg:px-12">
-            <StaggerGroup className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-14">
+            <StaggerGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {ARTICLES.map((article) => (
-                <StaggerItem key={article.title}>
-                  <article>
-                    <h2 className="font-serif text-xl">{article.title}</h2>
-                    <p className="mt-3 text-sm text-valozzi-black/60">
+                <StaggerItem key={article.title} className="h-full">
+                  <article className="glass flex h-full flex-col rounded-[1.75rem] p-7">
+                    <h2 className="text-headline text-xl">{article.title}</h2>
+                    <p className="text-muted mt-2 flex-1 text-[15px] leading-relaxed">
                       {article.description}
                     </p>
                     {/* TODO: conteúdo completo do artigo — reaproveitar/adaptar
                        material já publicado no Instagram da Valozzi. */}
-                    <span className="mt-4 inline-block text-xs tracking-[0.2em] uppercase text-valozzi-gold/60">
+                    <span className="mt-6 inline-flex h-7 w-fit items-center rounded-full bg-valozzi-gold/15 px-3 text-[12px] font-semibold text-valozzi-black/60">
                       Em breve
                     </span>
                   </article>

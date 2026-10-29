@@ -5,11 +5,5 @@ export function Eyebrow({
   children: string;
   className?: string;
 }) {
-  return (
-    <p
-      className={`text-xs font-medium tracking-[0.3em] uppercase text-valozzi-gold ${className}`}
-    >
-      {children}
-    </p>
-  );
+  return <p className={`text-eyebrow ${className}`}>{children}</p>;
 }

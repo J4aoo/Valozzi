@@ -28,13 +28,13 @@ export default function PlanejamentoPatrimonialPage() {
           title="Capital parado é uma decisão. Capital estrategicamente direcionado também."
         />
 
-        <section className="bg-valozzi-offwhite py-28 lg:py-36">
+        <section className="vars-light surface-light py-28 lg:py-40">
           <div className="mx-auto max-w-3xl px-6 lg:px-12 text-center">
             <Reveal>
               <Eyebrow className="justify-center flex">Definição</Eyebrow>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="mt-6 font-serif text-2xl sm:text-3xl leading-snug tracking-[-0.015em] text-balance">
+              <p className="text-title mt-6 text-[clamp(1.5rem,3.4vw,2.25rem)] leading-snug text-balance">
                 Alavancagem patrimonial é a utilização planejada de recursos,
                 crédito e ativos para ampliar a capacidade de construção de
                 patrimônio — sempre considerando riscos, custos, prazo e
@@ -44,26 +44,26 @@ export default function PlanejamentoPatrimonialPage() {
           </div>
         </section>
 
-        <section className="bg-valozzi-black text-valozzi-offwhite py-28 lg:py-36">
+        <section className="vars-dark surface-dark py-28 lg:py-40">
           <div className="mx-auto max-w-4xl px-6 lg:px-12">
             <Reveal>
-              <h2 className="font-serif text-3xl sm:text-4xl text-center tracking-[-0.015em] text-balance">
+              <h2 className="text-title text-center text-[clamp(2rem,4.5vw,3.25rem)] text-balance">
                 Alavancar não é arriscar. É estruturar.
               </h2>
             </Reveal>
 
             <StaggerGroup
-              className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-4"
+              className="mt-16 flex flex-col flex-wrap items-center justify-center gap-4 sm:flex-row sm:gap-3"
               stagger={0.1}
             >
               {FLOW.map((step, i) => (
                 <StaggerItem key={step}>
                   <div className="flex items-center gap-4">
-                    <span className="font-serif text-xl border border-valozzi-gold/40 rounded-full h-16 w-16 flex items-center justify-center text-center px-2">
+                    <span className="glass flex h-12 items-center justify-center rounded-full px-5 text-[17px] font-semibold tracking-[-0.01em]">
                       {step}
                     </span>
                     {i < FLOW.length - 1 && (
-                      <span className="text-valozzi-gold text-xl rotate-90 sm:rotate-0">→</span>
+                      <span className="text-valozzi-gold text-xl rotate-90 sm:rotate-0" aria-hidden>›</span>
                     )}
                   </div>
                 </StaggerItem>
@@ -71,7 +71,7 @@ export default function PlanejamentoPatrimonialPage() {
             </StaggerGroup>
 
             <Reveal delay={0.1}>
-              <p className="mt-16 text-center text-valozzi-offwhite/70 max-w-2xl mx-auto">
+              <p className="text-muted mx-auto mt-16 max-w-2xl text-center text-[17px] leading-relaxed">
                 Alavancagem patrimonial não significa simplesmente assumir mais
                 crédito. Significa estruturar recursos, capacidade de
                 pagamento, ativos e prazo de maneira coerente com seus
@@ -88,8 +88,8 @@ export default function PlanejamentoPatrimonialPage() {
           </div>
         </section>
 
-        <section className="bg-valozzi-champagne py-10">
-          <p className="mx-auto max-w-2xl px-6 lg:px-12 text-center text-xs text-valozzi-black/50">
+        <section className="vars-light surface-champagne py-10">
+          <p className="mx-auto max-w-2xl px-6 lg:px-12 text-center text-[12px] leading-relaxed text-subtle">
             Essa sequência representa um processo, não uma garantia de
             resultado — qualquer retorno depende das condições da operação,
             do ativo adquirido, dos custos, do mercado e da execução da

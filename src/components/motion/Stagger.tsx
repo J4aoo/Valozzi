@@ -47,8 +47,8 @@ export function StaggerItem({
   const reduceMotion = useReducedMotion();
 
   const item: Variants = {
-    hidden: { opacity: 0, y: reduceMotion ? 0 : y },
-    show: { opacity: 1, y: 0, transition: springs.default },
+    hidden: reduceMotion ? { opacity: 0 } : { opacity: 0, y, filter: "blur(8px)" },
+    show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { ...springs.default, duration: 0.8 }, transitionEnd: { filter: "none" } },
   };
 
   return (
